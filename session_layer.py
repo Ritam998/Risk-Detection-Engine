@@ -7,9 +7,9 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Optional
 
-from .ema_layer import EMALayer, EMAConfig
-from .behavior_check import BehaviorChecker, BehaviorWindow
-from .decision_engine import DecisionEngine, DecisionInput, DecisionResult
+from services.ema_layer import EMALayer, EMAConfig
+from services.behavior_check import BehaviorChecker, BehaviorWindow
+from services.decision_engine import DecisionEngine, DecisionInput, DecisionResult
 
 
 @dataclass
@@ -63,8 +63,7 @@ class SessionLayer:
         self._behavior_checker = BehaviorChecker(window_size=behavior_window_size)
         self._decision_engine = DecisionEngine()
 
-        # In-memory session store:  user_id → BehaviorWindow
-        # The EMA state is managed inside EMALayer keyed by user_id.
+       
         self._behavior_windows: dict[str, BehaviorWindow] = {}
 
    
